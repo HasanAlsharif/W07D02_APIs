@@ -21,12 +21,21 @@ app.get("/todos", (req, res) => {
   
 
   //http://localhost:3000/create/todo
-app.get("/create/todo", (req, res) => {
-    // set the response status code to 200 (OK)
-    res.status(200);
-    // sends back a response of all users
+app.post("/create/todo", (req, res) => {
+   
+    const newtodo = { todo: req.body.todo, isCompleted: req.body.isCompleted };
+    todos.push(newtodo);
+    res.status(201);
     res.json(todos);
+
   });
+
+
+
+
+
+  
+
 
 
 
