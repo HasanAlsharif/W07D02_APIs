@@ -1,0 +1,30 @@
+{
+  "name": "W07D02_APIs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "APIserver.js",
+  "scripts": {
+    "start": "node APIserver.js",
+    "dev": "nodemon APIserver.js",
+
+    "startapp": "node app.js",
+    "devapp": "nodemon app.js",
+
+
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HasanAlsharif/W07D02_APIs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HasanAlsharif/W07D02_APIs/issues"
+  },
+  "homepage": "https://github.com/HasanAlsharif/W07D02_APIs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
