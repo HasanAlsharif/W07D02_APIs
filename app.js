@@ -60,10 +60,34 @@ app.post("/create/todo", (req, res) => {
 
 
 
-
-
-
 // Q6
+
+ //http://localhost:3000/delete/todo/:name
+ app.delete("/delete/todo/:name", (req, res) => {
+    const deletetodo = req.params.name
+
+    let i
+    const found = todos.find((element, index) => {
+        i=index
+        return element.todo === deletetodo;
+      });
+    
+      if (found) {
+        res.status(201);
+        
+        todos.splice(i,1);
+        res.json(todos);
+
+        } else {
+        // set the response status code to 404 (Not Found)
+        res.status(404);
+        res.json("Error, not found");
+      }
+  });
+
+
+
+
 // Q7
 // Q8
 
