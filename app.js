@@ -8,8 +8,8 @@ app.use(express.json());
 
 // Q2
 const todos = [
-    { todo: "wake up", isCompleted: false },
-    { todo: "Eat Breakfast", isCompleted: false }
+    { todo: "wake up", isCompleted: true },
+    { todo: "Eat Breakfast", isCompleted: true }
 ];
 
 
@@ -21,6 +21,7 @@ app.get("/todos", (req, res) => {
     // sends back a response of all users
     res.json(todos);
   });
+
 
   
 // Q4
@@ -58,6 +59,7 @@ app.post("/create/todo", (req, res) => {
       }
   });
 
+// Q: why now when I write sleep in the route it will be not found ? shouldn't todos now is modified ?
 
 
 // Q6
@@ -73,10 +75,9 @@ app.post("/create/todo", (req, res) => {
       });
     
       if (found) {
-        res.status(201);
         
         todos.splice(i,1);
-        res.json(todos);
+        res.status(201).json(todos);
 
         } else {
         // set the response status code to 404 (Not Found)
@@ -85,15 +86,54 @@ app.post("/create/todo", (req, res) => {
       }
   });
 
-
+// Q: if i did this q with get http method it will also work , whats the difference ? 
 
 
 // Q7
+ //http://localhost:3000/complete/todo/:name
+  app.put("/complete/todo/:name", (req, res) => {
+    const complete = req.params.name
+    let i
+    const found = todos.find((element, index) => {
+        i=index
+        return element.todo === complete;
+      });
+    
+      if (found) {
+        res.status(201);
+        todos[i].isCompleted = true
+        res.json(todos);
+
+        } else {
+        // set the response status code to 404 (Not Found)
+        res.status(404);
+        res.json("todo task not found");
+      }
+  });
+
+// Q: from this question the put did change the value pemenantly, the delete for example didnt
+
+
+
+
 // Q8
+app.get("/completed/todos", (req, res) => {
 
+  const done = todos.filter(element => element.isCompleted === true);
+  
+  
+    if (done.length) {
+      res.status(201);
+      res.json(done);
 
+      } else {
+      // set the response status code to 404 (Not Found)
+      res.status(404);
+      res.json("todo task not found");
+    }
+});
 
-
+// Q:is done === [] a good argument ? or i should always use done.length ===0
 
 
   app.listen(port, () => {
